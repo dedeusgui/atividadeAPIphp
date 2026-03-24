@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS sobre_mim (
 );
 
 INSERT INTO sobre_mim (nome_completo, cor_do_olho, tamanho) 
-VALUES ('Guilherme', 'Castanho', '1.80m');
+VALUES ('Guilherme', 'Castanho', '1.85m');
