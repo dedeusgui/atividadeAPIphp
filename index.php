@@ -10,27 +10,27 @@ require_once 'src/Core/Router.php';
 // Limpa URL
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '/';
 
-// Cria central de roteamento visual
+// Cria o centro gerador de rotas
 $router = new Router();
 
 // ============================================
 //               HUB DE ROTAS (API)
 // ============================================
 
-// SELECT
-$router->get('/api/sobre',       'PessoaController@getAll');
-$router->get('/api/sobre/{id}',  'PessoaController@getById');
+// LER
+$router->get('/guilherme',       'PessoaController@getAll');
+$router->get('/guilherme/{id}',  'PessoaController@getById');
 
-// INSERT
-$router->post('/api/sobre',      'PessoaController@create');
+// CRIAR
+$router->post('/guilherme',      'PessoaController@create');
 
-// UPDATE
-$router->put('/api/sobre/{id}',  'PessoaController@update');
+// ATUALIZAR
+$router->put('/guilherme/{id}',  'PessoaController@update');
 
-// DELETE
-$router->delete('/api/sobre/{id}','PessoaController@delete');
+// DELETAR
+$router->delete('/guilherme/{id}','PessoaController@delete');
 
 
 // ============================================
-// Executa o roteador
+// Faz o Router instanciar e executar os códigos da URL enviada
 $router->run($url);

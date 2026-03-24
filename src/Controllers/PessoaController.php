@@ -23,9 +23,10 @@ class PessoaController {
                 extract($row);
                 $pessoa_item = array(
                     "id" => $id,
-                    "nome_completo" => $nome_completo,
-                    "cor_do_olho" => $cor_do_olho,
-                    "tamanho" => $tamanho
+                    "peso" => $peso,
+                    "altura" => $altura,
+                    "cor_cabelo" => $cor_cabelo,
+                    "cor_olho" => $cor_olho
                 );
                 array_push($pessoas_arr["dados"], $pessoa_item);
             }
@@ -39,12 +40,13 @@ class PessoaController {
         $this->pessoa->id = $id;
         $this->pessoa->readOne();
         
-        if($this->pessoa->nome_completo != null) {
+        if($this->pessoa->peso != null) {
             $pessoa_arr = array(
                 "id" =>  $this->pessoa->id,
-                "nome_completo" => $this->pessoa->nome_completo,
-                "cor_do_olho" => $this->pessoa->cor_do_olho,
-                "tamanho" => $this->pessoa->tamanho
+                "peso" => $this->pessoa->peso,
+                "altura" => $this->pessoa->altura,
+                "cor_cabelo" => $this->pessoa->cor_cabelo,
+                "cor_olho" => $this->pessoa->cor_olho
             );
             JsonView::render($pessoa_arr, 200);
         } else {
@@ -54,15 +56,16 @@ class PessoaController {
 
     public function create() {
         $data = json_decode(file_get_contents("php://input"));
-        if(!empty($data->nome_completo) && !empty($data->cor_do_olho) && !empty($data->tamanho)) {
-            $this->pessoa->nome_completo = $data->nome_completo;
-            $this->pessoa->cor_do_olho = $data->cor_do_olho;
-            $this->pessoa->tamanho = $data->tamanho;
+        if(!empty($data->peso) && !empty($data->altura) && !empty($data->cor_cabelo) && !empty($data->cor_olho)) {
+            $this->pessoa->peso = $data->peso;
+            $this->pessoa->altura = $data->altura;
+            $this->pessoa->cor_cabelo = $data->cor_cabelo;
+            $this->pessoa->cor_olho = $data->cor_olho;
 
             if($this->pessoa->create()) {
-                JsonView::render(array("mensagem" => "Pessoa criada com sucesso."), 201);
+                JsonView::render(array("mensagem" => "Dados criados com sucesso."), 201);
             } else {
-                JsonView::render(array("mensagem" => "Não foi possível criar a pessoa."), 503);
+                JsonView::render(array("mensagem" => "Não foi possível criar os dados."), 503);
             }
         } else {
             JsonView::render(array("mensagem" => "Dados incompletos."), 400);
@@ -73,15 +76,16 @@ class PessoaController {
         $data = json_decode(file_get_contents("php://input"));
         $this->pessoa->id = $id;
 
-        if(!empty($data->nome_completo) && !empty($data->cor_do_olho) && !empty($data->tamanho)) {
-            $this->pessoa->nome_completo = $data->nome_completo;
-            $this->pessoa->cor_do_olho = $data->cor_do_olho;
-            $this->pessoa->tamanho = $data->tamanho;
+        if(!empty($data->peso) && !empty($data->altura) && !empty($data->cor_cabelo) && !empty($data->cor_olho)) {
+            $this->pessoa->peso = $data->peso;
+            $this->pessoa->altura = $data->altura;
+            $this->pessoa->cor_cabelo = $data->cor_cabelo;
+            $this->pessoa->cor_olho = $data->cor_olho;
 
             if($this->pessoa->update()) {
-                JsonView::render(array("mensagem" => "Pessoa atualizada com sucesso."), 200);
+                JsonView::render(array("mensagem" => "Dados atualizados com sucesso."), 200);
             } else {
-                JsonView::render(array("mensagem" => "Não foi possível atualizar a pessoa."), 503);
+                JsonView::render(array("mensagem" => "Não foi possível atualizar os dados."), 503);
             }
         } else {
             JsonView::render(array("mensagem" => "Dados incompletos."), 400);
@@ -92,9 +96,9 @@ class PessoaController {
         $this->pessoa->id = $id;
 
         if($this->pessoa->delete()) {
-            JsonView::render(array("mensagem" => "Pessoa deletada com sucesso."), 200);
+            JsonView::render(array("mensagem" => "Dados deletados com sucesso."), 200);
         } else {
-            JsonView::render(array("mensagem" => "Não foi possível deletar a pessoa."), 503);
+            JsonView::render(array("mensagem" => "Não foi possível deletar os dados."), 503);
         }
     }
 }

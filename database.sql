@@ -1,12 +1,14 @@
 CREATE DATABASE IF NOT EXISTS api_guilherme;
 USE api_guilherme;
 
-CREATE TABLE IF NOT EXISTS sobre_mim (
+DROP TABLE IF EXISTS guilherme;
+CREATE TABLE guilherme (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome_completo VARCHAR(255) NOT NULL,
-    cor_do_olho VARCHAR(50) NOT NULL,
-    tamanho VARCHAR(50) NOT NULL
+    peso VARCHAR(50) NOT NULL,
+    altura VARCHAR(50) NOT NULL,
+    cor_cabelo VARCHAR(50) NOT NULL,
+    cor_olho VARCHAR(50) NOT NULL
 );
 
-INSERT INTO sobre_mim (nome_completo, cor_do_olho, tamanho) 
-VALUES ('Guilherme', 'Castanho', '1.85m');
+INSERT INTO guilherme (peso, altura, cor_cabelo, cor_olho) 
+VALUES ('75kg', '1.85m', 'Castanho', 'Castanho');
